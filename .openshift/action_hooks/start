@@ -1,0 +1,3 @@
+#!/bin/bash
+cd $OPENSHIFT_REPO_DIR
+nohup java -jar target/serverinfo-1.0-SNAPSHOT.jar server serverinfo.yml > ${OPENSHIFT_DIY_LOG_DIR}/serverinfo.log 2>&1 &
