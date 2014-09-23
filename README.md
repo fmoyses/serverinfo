@@ -1,0 +1,4 @@
+serverinfo
+==========
+
+Dropwizard sample project.
