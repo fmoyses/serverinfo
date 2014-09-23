@@ -1,0 +1,12 @@
+mongohost: localhost
+mongoport: 27017
+mongodb: serverinfo
+server:
+  applicationConnectors:
+  - type: http
+    bindHost: localhost
+    port: 8080
+  adminConnectors:
+  - type: http
+    bindHost: localhost
+    port: 8081

@@ -29,12 +29,12 @@ public class ServerInfoApplication extends Application<ServerInfoConfiguration> 
     @Override
     public void run(ServerInfoConfiguration configuration,
                     Environment environment) throws Exception {
-        MongoClient mongoClient = new MongoClient(configuration.mongohost, configuration.mongoport);
+        MongoClient mongoClient = new MongoClient(configuration.getMongohost(), configuration.getMongoport());
         MongoClientManager mongoManaged = new MongoClientManager(mongoClient);
         environment.healthChecks().register("MongoHealthCheck", new MongoHealthCheck(mongoClient));
         environment.lifecycle().manage(mongoManaged);
 
-        DB db = mongoClient.getDB(configuration.mongodb);
+        DB db = mongoClient.getDB(configuration.getMongodb());
         JacksonDBCollection<ServerInfo, String> serverInfo =
                 JacksonDBCollection.wrap(db.getCollection("serverInfo"), ServerInfo.class, String.class);
 

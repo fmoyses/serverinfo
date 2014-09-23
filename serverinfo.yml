@@ -1,6 +1,12 @@
-mongohost: localhost
-mongoport: 27017
+mongohost: @OPENSHIFT_MONGODB_DB_HOST@
+mongoport: @OPENSHIFT_MONGODB_DB_PORT@
 mongodb: serverinfo
-http:
+server:
+  applicationConnectors:
+  - type: http
     bindHost: @OPENSHIFT_DIY_IP@
-    adminPort: @OPENSHIFT_DIY_PORT@
+    port: @OPENSHIFT_DIY_PORT@
+  adminConnectors:
+  - type: http
+    bindHost: @OPENSHIFT_DIY_IP@
+    port: @OPENSHIFT_DIY_PORT@

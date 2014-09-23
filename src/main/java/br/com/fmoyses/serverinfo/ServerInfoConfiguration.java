@@ -12,15 +12,42 @@ import javax.validation.constraints.Min;
  */
 public class ServerInfoConfiguration extends Configuration {
 
-    @JsonProperty
     @NotEmpty
-    public String mongohost = "localhost";
+    private String mongohost = "localhost";
 
     @Min(1)
     @Max(65535)
-    @JsonProperty
-    public int mongoport = 27017;
+    private int mongoport = 27017;
 
-    @JsonProperty @NotEmpty
-    public String mongodb = "serverinfo";
+    private String mongodb = "serverinfo";
+
+    @JsonProperty
+    public String getMongohost() {
+        return mongohost;
+    }
+
+    @JsonProperty
+    public void setMongohost(String mongohost) {
+        this.mongohost = mongohost;
+    }
+
+    @JsonProperty
+    public int getMongoport() {
+        return mongoport;
+    }
+
+    @JsonProperty
+    public void setMongoport(int mongoport) {
+        this.mongoport = mongoport;
+    }
+
+    @JsonProperty
+    public String getMongodb() {
+        return mongodb;
+    }
+
+    @JsonProperty
+    public void setMongodb(String mongodb) {
+        this.mongodb = mongodb;
+    }
 }

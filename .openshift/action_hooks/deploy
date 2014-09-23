@@ -2,3 +2,5 @@
 cd $OPENSHIFT_REPO_DIR
 sed -i 's/@OPENSHIFT_DIY_IP@/'"$OPENSHIFT_DIY_IP"'/g' serverinfo.yml
 sed -i 's/@OPENSHIFT_DIY_PORT@/'"$OPENSHIFT_DIY_PORT"'/g' serverinfo.yml
+sed -i 's/@OPENSHIFT_MONGODB_DB_HOST@/'"$OPENSHIFT_MONGODB_DB_HOST"'/g' serverinfo.yml
+sed -i 's/@OPENSHIFT_MONGODB_DB_PORT@/'"$OPENSHIFT_MONGODB_DB_PORT"'/g' serverinfo.yml
