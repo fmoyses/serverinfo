@@ -1,4 +1,4 @@
 serverinfo
 ==========
 
-Dropwizard sample project.
+Dropwizard sample project deploying to OpenShift.
