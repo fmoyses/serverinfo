@@ -56,7 +56,6 @@ public class ServerInfoApplication extends Application<ServerInfoConfiguration> 
         	MongoCredential credential = MongoCredential.createMongoCRCredential(configuration.getMongouser(), configuration.getMongodb(), configuration.getMongopass().toCharArray());
 			return new MongoClient(serverAddress, Arrays.asList(credential));
         }
-		MongoClient mongoClient = new MongoClient(serverAddress);
-		return mongoClient;
+		return new MongoClient(serverAddress);
 	}
 }
