@@ -53,9 +53,11 @@ public class ServerInfoApplication extends Application<ServerInfoConfiguration> 
 			throws UnknownHostException {
 		ServerAddress serverAddress = new ServerAddress(configuration.getMongohost(), configuration.getMongoport());
         if (configuration.getMongopass() != null) {
+        	System.out.println(configuration.getMongouser() + " - " + configuration.getMongopass());
         	MongoCredential credential = MongoCredential.createMongoCRCredential(configuration.getMongouser(), configuration.getMongodb(), configuration.getMongopass().toCharArray());
 			return new MongoClient(serverAddress, Arrays.asList(credential));
         }
+        System.out.println("Sem senha");
 		return new MongoClient(serverAddress);
 	}
 }
