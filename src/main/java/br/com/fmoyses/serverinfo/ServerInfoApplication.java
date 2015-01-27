@@ -24,6 +24,7 @@ public class ServerInfoApplication extends Application<ServerInfoConfiguration> 
     @Override
     public void initialize(Bootstrap<ServerInfoConfiguration> bootstrap) {
         // nothing to do yet
+    	
     }
 
     @Override
