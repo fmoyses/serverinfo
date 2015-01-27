@@ -1,6 +1,8 @@
 mongohost: @OPENSHIFT_MONGODB_DB_HOST@
 mongoport: @OPENSHIFT_MONGODB_DB_PORT@
 mongodb: serverinfo
+mongouser: @OPENSHIFT_MONGODB_DB_USERNAME@
+mongouser: @OPENSHIFT_MONGODB_DB_PASSWROD@
 server:
   applicationConnectors:
   - type: http

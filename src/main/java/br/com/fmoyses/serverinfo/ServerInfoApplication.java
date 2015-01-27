@@ -1,5 +1,8 @@
 package br.com.fmoyses.serverinfo;
 
+import java.net.UnknownHostException;
+import java.util.Arrays;
+
 import br.com.fmoyses.serverinfo.core.MongoClientManager;
 import br.com.fmoyses.serverinfo.core.ServerInfo;
 import br.com.fmoyses.serverinfo.health.MongoHealthCheck;
@@ -7,6 +10,9 @@ import br.com.fmoyses.serverinfo.resources.ServerInfoPostResource;
 import br.com.fmoyses.serverinfo.resources.ServerInfoResource;
 import com.mongodb.DB;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoCredential;
+import com.mongodb.ServerAddress;
+
 import io.dropwizard.Application;
 import io.dropwizard.setup.Bootstrap;
 import io.dropwizard.setup.Environment;
@@ -30,7 +36,7 @@ public class ServerInfoApplication extends Application<ServerInfoConfiguration> 
     @Override
     public void run(ServerInfoConfiguration configuration,
                     Environment environment) throws Exception {
-        MongoClient mongoClient = new MongoClient(configuration.getMongohost(), configuration.getMongoport());
+        MongoClient mongoClient = getMongoClient(configuration);
         MongoClientManager mongoManaged = new MongoClientManager(mongoClient);
         environment.healthChecks().register("MongoHealthCheck", new MongoHealthCheck(mongoClient));
         environment.lifecycle().manage(mongoManaged);
@@ -42,4 +48,15 @@ public class ServerInfoApplication extends Application<ServerInfoConfiguration> 
         environment.jersey().register(new ServerInfoPostResource(serverInfo));
         environment.jersey().register(new ServerInfoResource(serverInfo));
     }
+
+	private MongoClient getMongoClient(ServerInfoConfiguration configuration)
+			throws UnknownHostException {
+		ServerAddress serverAddress = new ServerAddress(configuration.getMongohost(), configuration.getMongoport());
+        if (configuration.getMongopass() != null) {
+        	MongoCredential credential = MongoCredential.createMongoCRCredential(configuration.getMongouser(), configuration.getMongodb(), configuration.getMongopass().toCharArray());
+			return new MongoClient(serverAddress, Arrays.asList(credential));
+        }
+		MongoClient mongoClient = new MongoClient(serverAddress);
+		return mongoClient;
+	}
 }

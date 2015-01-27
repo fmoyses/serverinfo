@@ -20,6 +20,8 @@ public class ServerInfoConfiguration extends Configuration {
     private int mongoport = 27017;
 
     private String mongodb = "serverinfo";
+    private String mongouser = "admin";
+    private String mongopass = null;
 
     @JsonProperty
     public String getMongohost() {
@@ -50,4 +52,26 @@ public class ServerInfoConfiguration extends Configuration {
     public void setMongodb(String mongodb) {
         this.mongodb = mongodb;
     }
+
+    @JsonProperty
+	public String getMongouser() {
+		return mongouser;
+	}
+
+    @JsonProperty
+	public void setMongouser(String mongouser) {
+		this.mongouser = mongouser;
+	}
+
+    @JsonProperty
+	public String getMongopass() {
+		return mongopass;
+	}
+
+    @JsonProperty
+	public void setMongopass(String mongopass) {
+		this.mongopass = mongopass;
+	}
+    
+    
 }
